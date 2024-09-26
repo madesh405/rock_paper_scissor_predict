@@ -12,7 +12,7 @@ def computer_choice(hist:dict,weapons:list[str]) -> str:
     else:
         for x in hist:
             if hist[x]==hist[len(hist)]:
-                if x-1!=0:
+                if (x-1)!=0:
                     all.append(hist[x-1])
 
         rt=all.count(weapons[0])
@@ -21,15 +21,15 @@ def computer_choice(hist:dict,weapons:list[str]) -> str:
         rp=rt/len(hist)
         pp=pt/len(hist)
         sp=st/len(hist)
-        pdict={rp:"rock",pp:"paper",sp:"scissor"} #have to change this part error in rare cases
-        m=max(pdict)
-        ind=weapons.index(pdict[m])
+        pdict={"rock":rp,"paper":pp,"scissor":sp} #have to change this part error in rare cases
+        m=max(pdict, key=lambda key: pdict[key])
+        ind=weapons.index(m)
         if ind==2:
             return weapons[0]
         else:
             return weapons[ind+1]
 
-def player_choice(weapons:list) -> str:       #the players's choice
+def player_choice(weapons:list[str]) -> str:       #the players's choice
     print("\n\nwelcome to rock paper scissor game")
     print("pick 1 for Rock")
     print("pick 2 por Paper")
@@ -46,7 +46,7 @@ def player_choice(weapons:list) -> str:       #the players's choice
 
 '''
 
-def rules(crps:str,prps:str,weapons:list) -> int:
+def rules(crps:str,prps:str,weapons:list[str]) -> int:
     if crps==prps:
         return [0,0]    #(computers point, players point)
 
