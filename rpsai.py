@@ -2,7 +2,7 @@ from random import choice
 
 weapons=["rock","paper","scissor"]
 
-def computer_choice(hist:dict,weapons:list[str]) -> str:
+def computer_choice(hist:dict,weapons:list[str]) -> str:  #THE NEW MODEL TO PREDICT FINISHED
 
     all=[]
 
@@ -21,7 +21,7 @@ def computer_choice(hist:dict,weapons:list[str]) -> str:
         rp=rt/len(hist)
         pp=pt/len(hist)
         sp=st/len(hist)
-        pdict={"rock":rp,"paper":pp,"scissor":sp} #have to change this part error in rare cases
+        pdict={"rock":rp,"paper":pp,"scissor":sp}
         m=max(pdict, key=lambda key: pdict[key])
         ind=weapons.index(m)
         if ind==2:
@@ -78,13 +78,12 @@ while game:
     crps=computer_choice(hist,weapons)
     prps=player_choice(weapons)
     hist[t]=prps
-    print("cmputer:",crps,"player:",prps,"\n\n")
+    print("computer:",crps,"player:",prps,"\n\n")
     curscore=rules(crps,prps,weapons)
     score=[curscore[0]+score[0],curscore[1]+score[1]]
+    t+=1
     cont=input("wanna continue? (y,n) ")
     if cont=="n":
-        t+=1
         break
 
 print("the scores are computer",score[0],"player",score[1])
-
